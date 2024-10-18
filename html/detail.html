@@ -10,7 +10,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link href="main.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -22,7 +22,7 @@
     <div class="container mt-3">
       <div class="card p-3">
         <span class = "product-name">이름</span>
-        <span id = "product-price">가격</span>
+        <span class = "product-price">가격</span>
       </div> 
 
     </div>
@@ -30,18 +30,15 @@
       //array
       var car = ['소나타' , 50000 , 'white'];
       //object key value 형 key value로 나눌수있다는게 장점
-      var car2 = {name : "소나타", price : 50000}
-      
-      document.querySelector('.product-name').innerHTML = car2.name;
-      document.querySelectorAll('#product-price')[0].textContent = car2.price;
-      document.querySelector('#product-name').addEventListener("click", function() {
-        window.alert("눌림");
-      })
+      //오브젝트 안에는 아무거나 다 넣을수 있음 array도 집어넣을수도 있음
+      var car2 = {name : "소나타", price : [50000]}
+    
+      car2.price[1] = car2.price[0] * 0.7;
 
-      console.log(car[1])
-      car2.price = 80000;
-      console.log(car2.price);
-    </script>
+      document.querySelector('.product-name').innerHTML = car2.name;
+      document.querySelectorAll('.product-price')[0].textContent = car2.price[1];
+     
+     </script>
 
 <div class="container mt-5">
   <ul class="list">
