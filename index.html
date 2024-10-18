@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="main.css" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html">
+          <div class="my-3">
+            <input type="text" id="inputId" class="form-control" />
+          </div>
+          <div class="my-3">
+            <input type="password" class="form-control" id="inputPassword" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="loginBtn">
+            전송
+          </button>
+          <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">JS Shop</span>
+        <span class="badge bg-dark">Dark 🔄</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="progress-bar"></div>
+    </nav>
+
+    <!-- <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas
+      voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat
+      sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+      praesentium exercitationem.
+    </div> -->
+
+    <script>
+      //이벤트 관련함수
+      $(".black-bg").click(function (e) {
+        // e.target; //실제로 누른거
+        // e.currentTarget; //이벤트리스너 달린 곳
+        // this;
+        // e.preventDefault(); //이벤트 기본동작 막  아줌
+        // e.stopPropagation; //내 상위 버블링 막아줌
+
+        console.log($(e.target));
+        console.log($(".black-bg"));
+
+        console.log($(e.target).is(".black-bg"));
+
+        //jquery로는 is로 비교해야하고 javascript는 ==로 비교하는듯
+        if ($(e.target).is(".black-bg")) {
+          $(e.target).removeClass("show-modal");
+        }
+        //$(".black-bg").removeClass("show-modal");
+      });
+    </script>
+
+    <script>
+      $(".lorem").on("scroll", function () {
+        var 스크롤양 = document.querySelector(".lorem").scrollTop;
+        var 실제높이 = document.querySelector(".lorem").scrollHeight;
+        var div박스높이 = document.querySelector(".lorem").clientHeight;
+
+        console.log(스크롤양, div박스높이, 실제높이);
+        console.log(스크롤양 + div박스높이 - 실제높이);
+        if (스크롤양 + div박스높이 > 실제높이 - 10) {
+          window.alert("다읽음");
+        }
+
+        document.querySelector("html").scrollHeight;
+        document.querySelector("html"), clientHeight;
+        window.scrollY;
+      });
+
+      window.addEventListener("scroll", function () {
+        var 웹페이지의스크롤양 = document.querySelector("html").scrollTop;
+        var 현재웹페이지실제높이 = document.querySelector("html").scrollHeight;
+        var 현재웹페이지보이는높이 =
+          document.querySelector("html").clientHeight;
+
+        var percent =
+          ((현재웹페이지보이는높이 + 웹페이지의스크롤양) /
+            현재웹페이지실제높이) *
+          100;
+
+        console.log(percent);
+
+        var progressbar = document.querySelector(".progress-bar");
+        progressbar.style.width = percent + "%";
+
+        var scroll = $(window).scrollTop();
+
+        if (scroll > 500) {
+          $(".navbar-brand").addClass("scroll-logo");
+        } else if (scroll <= 500) {
+          $(".navbar-brand").removeClass("scroll-logo");
+        }
+      });
+    </script>
+
+    <ul class="list-group">
+      <li class="list-group-item">An item</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+    <div class="main-bg">
+      <h4>Shirts on Sale</h4>
+      <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+    <div style="height: 1000px"></div>
+
+    <!-- <div class="alert alert-danger">
+      <p>5</p>
+      초 이내 구매시 사은품 증정!
+    </div> -->
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="작업폴더/car1.png" />
+        </div>
+
+        <div class="slide-box"><img src="작업폴더/car2.png" /></div>
+
+        <div class="slide-box"><img src="작업폴더/car3.png" /></div>
+        <div class="slide-box"><img src="작업폴더/car4.png" /></div>
+      </div>
+    </div>
+
+    <button class="slide slide-1">1</button>
+    <button class="slide slide-2">2</button>
+    <button class="slide slide-3">3</button>
+    <button class="slide slide-4">4</button>
+    <button class="preview">이전</button>
+    <button class="next">다음</button>
+
+    <script>
+      function 함수(a) {
+        return "야발련아";
+        console.log(1);
+        //retrun은 함수종료를하라는 의미도 가지고도있으니 밑에있어도 동작을 안합니다.
+      }
+      var a = 함수(123123);
+      console.log(a);
+    </script>
+
+    <script>
+      var 지금사진 = 1;
+      var slideCount = document.querySelectorAll(".slide-box");
+      var Count = slideCount.length;
+
+      $(".preview").on("click", function () {
+        if (지금사진 == 1) {
+          $(".slide-container").css(
+            "transform",
+            `translateX(${(Count - 1) * -100}vw)`
+          );
+          지금사진 = Count;
+        } else {
+          지금사진 -= 1;
+          $(".slide-container").css(
+            "transform",
+            `translateX(${(지금사진 - 1) * -100}vw)`
+          );
+        }
+      });
+
+      $(".next").on("click", function () {
+        if (지금사진 == Count) {
+          $(".slide-container").css("transform", `translateX(${0}vw)`);
+          지금사진 = 1;
+        } else {
+          $(".slide-container").css(
+            "transform",
+            `translateX(${지금사진 * -100}vw)`
+          );
+          지금사진 += 1;
+        }
+      });
+
+      $(".slide-2").on("click", function () {
+        $(".slide-container").css("transform", "translateX(-100vw)");
+      });
+
+      $(".slide-1").on("click", function () {
+        $(".slide-container").css("transform", "translateX(0vw)");
+      });
+
+      $(".slide-3").on("click", function () {
+        $(".slide-container").css("transform", "translateX(-200vw)");
+      });
+    </script>
+    <script>
+      let test = "2323";
+      var count = 0;
+      $(".badge").on("click", function () {
+        count += 1;
+        if (count % 2 == 0) {
+          console.log("짝수임");
+          $(".badge").html("Dark 🔄");
+        } else {
+          console.log("홀수임");
+          $(".badge").html("Light 🔄");
+        }
+      });
+    </script>
+
+    <script>
+      function 삼육구게임(number) {
+        var one = number % 10;
+        if (one == 3 || one == 6 || one == 9) {
+          console.log("박수");
+        } else {
+        }
+      }
+
+      function 합격판독기(score1) {
+        if (0 <= score1 && score1 <= 100) {
+        } else {
+          alert("장난하지마라");
+        }
+      }
+
+      function 합격했냐(score1, score2) {
+        if (score1 + score2 >= 120 && score1 >= 40 && score2 >= 40) {
+          console.log("합격");
+        } else {
+          console.log("불합격");
+        }
+      }
+    </script>
+
+    <script>
+      document
+        .querySelector(".navbar-toggler")
+        .addEventListener("click", function () {
+          document.querySelector(".list-group").classList.toggle("show");
+        });
+
+      $("#login").on("click", function () {
+        $(".black-bg").toggleClass("show-modal");
+      });
+
+      $("#close").on("click", function () {
+        $(".black-bg").toggleClass("show-modal");
+      });
+    </script>
+
+    <script>
+      $("form").on("submit", function (event) {
+        var 입력한값 = document.getElementById("inputId").value;
+        var 입력비밀번호값 = document.getElementById("inputPassword").value;
+
+        if (/[A-Z]/.test(입력비밀번호값)) {
+          alert("대문자 있음");
+        } else {
+          alert("대문자 없음");
+        }
+
+        if (/\S+@\S+.\S+/.test(입력한값)) {
+          alert("이메일형식입니다.");
+        }
+        if (document.getElementById("inputId").value == "") {
+          alert("아이디입력 안함");
+          event.preventDefault();
+        } else if ($("#inputPassword").val() == "") {
+          alert("비밀번호 입력 안함");
+          event.preventDefault();
+        } else if ($("#inputPassword").val().length < 6) {
+          alert("6자 미만입니다.");
+          event.preventDefault();
+        }
+      });
+    </script>
+
+    <!-- SetTimeout 타이머 주는법 -->
+    <!-- <script>
+      var second = $(".alert p").text();
+      if (second > 0) {
+        setInterval(감소, 1000);
+      }
+      function 감소() {
+        second = second - 1;
+        $(".alert p").html(second);
+
+        if (second == "0") {
+          $(".alert").hide();
+        }
+      }
+    </script> -->
+
+    <!-- 예제 문제 -->
+    <!-- <script>
+      var 나이 = 24;
+      const 출신지역 = "서울 은평구 신사동";
+
+      var 예금액 = 30000;
+      var 이자율 = 0;
+
+      function test1(예금액) {
+        if (예금액 < 50000) {
+          이자율 = 1.15 ** 10;
+          총금액 = 예금액 * 이자율;
+          console.log(총금액);
+        } else if (예금액 > 50000) {
+          이자율 = 1.2 ** 10;
+          총금액 = 예금액 * 이자율;
+          console.log(총금액);
+        }
+      }
+      test1(예금액);
+    </script> -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
