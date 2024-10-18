@@ -9,13 +9,26 @@ var buttonSize = $(".tab-button").length;
  * for문은 코드를 반복실행한다.
  */
 
-for (let i = 0; i < buttonSize; i++) {
-  button.eq(i).on("click", function () {
-    button.removeClass("orange");
-    button.eq(i).addClass("orange");
-    content.removeClass("show");
-    content.eq(i).addClass("show");
-  });
+// for (let i = 0; i < buttonSize; i++) {
+//   button.eq(i).on("click", function () {
+//     opentab(i);
+//   });
+// }
+
+$(".list").click(function (e) {
+  // console.log(e.target);
+  // console.log("첫번째" + document.querySelectorAll(".tab-button")[0]);
+  // console.log(e.target == document.querySelectorAll(".tab-button")[0]);
+
+  opentab(e.target.dataset.id);
+  //console.log(e.target.value);
+});
+
+function opentab(value) {
+  button.removeClass("orange");
+  button.eq(value).addClass("orange");
+  content.removeClass("show");
+  content.eq(value).addClass("show");
 }
 
 // button.eq(0).on("click", function () {

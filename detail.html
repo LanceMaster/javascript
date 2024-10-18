@@ -18,12 +18,37 @@
     ></script>
   </head>
   <body>
+ 
+    <div class="container mt-3">
+      <div class="card p-3">
+        <span class = "product-name">이름</span>
+        <span id = "product-price">가격</span>
+      </div> 
+
+    </div>
+    <script>
+      //array
+      var car = ['소나타' , 50000 , 'white'];
+      //object key value 형 key value로 나눌수있다는게 장점
+      var car2 = {name : "소나타", price : 50000}
+      
+      document.querySelector('.product-name').innerHTML = car2.name;
+      document.querySelectorAll('#product-price')[0].textContent = car2.price;
+      document.querySelector('#product-name').addEventListener("click", function() {
+        window.alert("눌림");
+      })
+
+      console.log(car[1])
+      car2.price = 80000;
+      console.log(car2.price);
+    </script>
+
 <div class="container mt-5">
   <ul class="list">
-    <li class="tab-button">Products</li>
-    <li class="tab-button orange">Information</li>
-    <li class="tab-button">Shipping</li>
-    <li class="tab-button">PC</li>
+    <li class="tab-button" data-id="0">Products</li>
+    <li class="tab-button orange"  data-id="1">Information</li>
+    <li class="tab-button"  data-id="2">Shipping</li>
+    <li class="tab-button"  data-id="3">PC</li>
   </ul>
   <div class="tab-content">
     <p>상품설명입니다. Product</p>
