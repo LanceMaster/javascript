@@ -23,9 +23,96 @@
       <div class="card p-3">
         <span class = "product-name">이름</span>
         <span class = "product-price">가격</span>
-      </div> 
+      </div>
+      
+      <form class="container my-5 form-group">
+        <p>상품선택</p>
+        
+        <select class="form-select mt-2 product">
+          <option>모자</option>
+          <option>셔츠</option>
+          <option>바지</option>    
+        </select>
+        
+        <select class="form-select mt-3 size  form-hide" >
+          <option>95</option>
+          <option>100</option>
+          <option>105</option>  
+        </select>
+        <div id = "test">
+  
+        </div>
+      </form>
+
+
+      <button class="btn-test">체크</button>
+      
+
 
     </div>
+
+    <script>
+      /*
+      javascript로 html 만드는방법
+      // */
+      // var a = document.createElement('p');
+      // a.innerHTML = 'test';
+      // document.querySelector("#test").appendChild(a);
+      /*
+      문자형 html 넣어주는 함수 insertAdjacentHTML
+       */ 
+      //var template = '<p>안녕</p>';
+      //document.querySelector("#test").insertAdjacentHTML('beforeend',template);
+
+      $(".form-select").eq(0).on("change" , function(){
+        var value = this.value;
+
+        if(value == "셔츠" ) {
+          document.querySelector(".size").classList.remove("form-hide");
+          
+        }
+        else if (this.value == "바지") {
+          document.querySelector(".size").classList.remove("form-hide");
+          var pants_template = `
+          <option>28</option>
+          <option>30</option>  
+        `;
+        //append는 추가여서 새로 아예할려면 html로 
+        $(".size").html(pants_template);
+        
+        }
+      
+      }
+      )
+        
+      /*
+      jquery
+      */
+      //$("#test").append(template);
+    </script>
+
+
+    <script>
+      /**
+       *값의 변경을 듣고싶을때는 addevenetlistener
+      스크립트 안에 한 코드는 페이지 로드할때 한번만 실행되는거임 알아둬야함 
+       */ 
+     
+       // document.querySelector('.product').addEventListener('change', function(e) {
+      // if (e.currentTarget.value == "셔츠") {
+      //   document.querySelector(".size").classList.remove("form-hide");
+        //jquery로는 $(".class").eq(n).val()
+     // }
+      // else {
+      //   document.querySelector(".size").classList.add("form-hide");
+      // }
+    
+  //});
+
+
+      
+
+    </script>
     <script>
       //array
       var car = ['소나타' , 50000 , 'white'];
