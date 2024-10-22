@@ -35,21 +35,38 @@
         </select>
         
         <select class="form-select mt-3 size  form-hide" >
-          <option>95</option>
-          <option>100</option>
-          <option>105</option>  
+         
         </select>
-        <div id = "test">
-  
-        </div>
+        
       </form>
 
 
-      <button class="btn-test">체크</button>
+  
       
 
 
     </div>
+
+    <script>
+      let fetchdata = [];
+
+      $(document).ready(function() {
+    $.ajax({
+        url: 'http://127.0.0.1:5400/getdata',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          fetchdata = data;
+          // console.log(data);
+            // 데이터 처리
+        },
+        error: function(error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+    </script>
 
     <script>
       /*
@@ -64,25 +81,45 @@
       //var template = '<p>안녕</p>';
       //document.querySelector("#test").insertAdjacentHTML('beforeend',template);
 
-      $(".form-select").eq(0).on("change" , function(){
+  
+
+      $(".form-select").eq(0).on("input" , function() {
         var value = this.value;
+        window.alert(value);
 
         if(value == "셔츠" ) {
           document.querySelector(".size").classList.remove("form-hide");
+          $(".size").html('');
+          var shirt_template =  `<option>95</option>
+          <option>100</option>
+          <option>105</option>`;
+          $(".size").append(shirt_template); 
           
         }
-        else if (this.value == "바지") {
+        else if (this.value == "바지") {  
           document.querySelector(".size").classList.remove("form-hide");
-          var pants_template = `
-          <option>28</option>
-          <option>30</option>  
-        `;
-        //append는 추가여서 새로 아예할려면 html로 
-        $(".size").html(pants_template);
-        
+          $(".size").html('');
+          
+          //array에 붙일수있는 foreach a가 하나하나의 값 array갯수만큼 반복함
+          // fetchdata.forEach(function(a){
+          //   console.log(a);
+          //   $('.size').append(`<option>${a.size}</option>`);
+          // })
+          //object 다룰때 쉬운 for in 문법 key는 i값 fetchdata는 object
+          // for (var key in fetchdata) {
+          //   console.log(fetchdata[key].size);
+          //   $('.size').append(`<option>${fetchdata[key].size}</option>`);
+          // }
+          //같은 foreach지만 arrow를 써서 function을 스킵할수가 있다. arrow function
+          //다른점은 function의 this와 arrow function의 this값은 달라질수있다.
+          fetchdata.forEach((a) => { 
+            $(".size").append(`<option>${a.size}</option>`);
+          });
+          }
+
         }
       
-      }
+      
       )
         
       /*
@@ -153,6 +190,8 @@
 
 
     <script src="javascript/detail.js"></script>
+
+    
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
