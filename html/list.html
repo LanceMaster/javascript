@@ -18,50 +18,90 @@
     ></script>
   </head>
   <body>
-    <div class="card-group container">
-      <div class="card">
-        <img src="https://via.placeholder.com/600" />
-        <div class="card-body">
-          <h5>Card title</h5>
-          <p>가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/600" />
-        <div class="card-body">
-          <h5>Card title</h5>
-          <p>가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/600" />
-        <div class="card-body">
-          <h5>Card title</h5>
-          <p>가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
+    <div class="container">
+      <div class="row"></div>
     </div>
 
+    <div class="container">
+      <button class="btn btn-danger">더보기</button>
+    </div>
     <script>
       var products = [
         { id: 0, price: 70000, title: "Blossom Dress" },
         { id: 1, price: 50000, title: "Springfield Shirt" },
         { id: 2, price: 60000, title: "Black Monastery" }
       ];
+      //array 정렬하는 방법
+      var array1 = [7, 6, 2324, 2];
+      array1.sort(function (a, b) {
+        return a - b;
+      });
 
-      let size = document.querySelectorAll(".card-body").length;
+      console.log(array1);
 
-      //`${a}` 문자안에 변수 쉽게 넣어주는 방법
-      for (let i = 0; i < size; i++) {
-        document.querySelectorAll(".card-body h5")[i].innerHTML =
-          products[i].title;
-        document.querySelectorAll(".card-body p")[
-          i
-        ].innerHTML = `가격 : ${products[i].price} `;
+      //함수로 간편하게 하는방법 param에다가 object를 집어넣었음
+      function foreachtest(param) {
+        param.forEach((a) => {
+          var template = `<div class="col-sm-4">
+        <img src="https://via.placeholder.com/600" class="w-100">
+        <h5>${a.title}</h5>
+        <p>가격 : ${a.price}</p>
+      </div>`;
+          $(".row").append(template);
+        });
       }
+
+      //또는 a뒤에 i를 넣고 해도 됨
+      // products.forEach(function (a) {
+      //   var 템플릿 = `<div class="col-sm-4">
+      //   <img src="https://via.placeholder.com/600" class="w-100">
+      //   <h5>${a.title}</h5>
+      //   <p>가격 : ${a.price}</p>
+      // </div>`;
+      //   $(".row").append(템플릿);
+      // });
+
+      foreachtest(products);
+    </script>
+
+    <script>
+      //Get하는 방법
+      // .get은 Json -> Object로 자동 변환 해줌
+      $.get("https://codingapple1.github.io/price.json")
+        .done(function (data) {
+          //Object Data
+          console.log(data.price);
+        })
+        .fail(function () {
+          console.log("실패함");
+        });
+
+      var 클릭횟수 = 0;
+      $(".btn").on("click", function () {
+        클릭횟수++;
+        console.log(클릭횟수);
+        if (클릭횟수 == 1) {
+          $.get("https://codingapple1.github.io/js/more1.json")
+            .done(function (data) {
+              console.log(data);
+              foreachtest(data);
+            })
+            .fail(function () {
+              console.log("실패함");
+            });
+        } else if (클릭횟수 == 2) {
+          $.get("https://codingapple1.github.io/js/more2.json")
+            .done(function (data) {
+              console.log(data);
+              foreachtest(data);
+            })
+            .fail(function () {
+              console.log("실패함");
+            });
+
+          $(".btn").addClass("hidden");
+        }
+      });
     </script>
   </body>
 

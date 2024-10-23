@@ -36,6 +36,37 @@
           console.log(a * b);
         });
       });
+
+      var a = [];
+      var b = 0;
+      function average(a, b) {
+        let total = 0;
+        let average = 0;
+        a.forEach((score) => (total += score));
+
+        average = total / a.length;
+
+        //console.log(average);
+
+        //삼향 연산자
+        const difference = b - average;
+        const message =
+          difference > 0
+            ? `지난번보다 ${difference}점이 올랐네요`
+            : difference < 0
+            ? `지난번보다 ${-difference}점이 떨어졌네요 재수하셈요`
+            : `동률`;
+
+        console.log(message);
+
+        // if (b > average) {
+        //   console.log(`지난번보다 ${b - average}점이 올랐네요`);
+        // } else if (b < average) {
+        //   console.log(`지난번보다 ${average - b} 점이 떨어졌네요 재수하셈요`);
+        // } else {
+        //   console.log(`동률`);
+        // }
+      }
     </script>
 
     <script
