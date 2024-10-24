@@ -7,3 +7,9 @@
 3. 다음은 빈 html + 데이터  html을 완성하는일을 javascript에서 한다. 전문적으로 이걸 client-side-rendering
 
 요즘은 서버가편한 client-side-rendering
+
+--2024 10 24 숙제
+
+1. 상품명 다나가순 정렬 버튼과 기능
+
+2. 6만원 이하 상품만 보기
