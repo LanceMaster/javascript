@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+
+  <body>
+    <!-- html 요소를 불러올떄 script를 먼저불러오면 해당 script는 에러가 난다 이걸 DOM이라고 말하는데
+     jquery로 $(document).ready와 javascript에서 addeventlistener domcontentloaded로 가능하다.-->
+    <script>
+      $(document).ready(function () {
+        document.querySelector(".test").innerHTML = "응애";
+      });
+      $(window).on("load", function () {
+        //document 안의 이미지 , js 파일 포함 전부 로드가 되었을 경우 실행할 코드
+      });
+    </script>
+    <h5 class="test">안녕하세요</h5>
+  </body>
+</html>

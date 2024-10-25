@@ -18,13 +18,28 @@
     ></script>
   </head>
   <body>
+    <div class="container mb-3 mt-3">
+      <input type="number" class="price-value" />
+      <img
+        src="../node_modules/bootstrap-icons/icons/search.svg"
+        class="search"
+        style="width: 1.5%"
+        height="1.5%"
+      />
+    </div>
+
     <div class="container">
       <div class="row"></div>
     </div>
 
     <div class="container">
-      <button class="btn btn-danger">더보기</button>
+      <button class="btn btn-danger more">더보기</button>
     </div>
+
+    <div class="container">
+      <button class="btn btn-danger price">가격순 정렬</button>
+    </div>
+
     <script>
       var products = [
         { id: 0, price: 70000, title: "Blossom Dress" },
@@ -37,6 +52,15 @@
         return a - b;
       });
 
+      $(".price").on("click", function () {
+        products.sort(function (a, b) {
+          return a.price - b.price;
+        });
+        $(".row").html("");
+        foreachtest(products);
+      });
+      //가격순 정렬
+
       console.log(array1);
 
       //함수로 간편하게 하는방법 param에다가 object를 집어넣었음
@@ -46,9 +70,30 @@
         <img src="https://via.placeholder.com/600" class="w-100">
         <h5>${a.title}</h5>
         <p>가격 : ${a.price}</p>
-      </div>`;
+        <button class ="buy" data-title = "${a.title}">구매</button>
+        </div>`;
+
           $(".row").append(template);
         });
+
+        localStorage.setItem("이름", "KIM");
+        var arr = [1, 2, 3];
+        var newarr = JSON.stringify(arr);
+        //array를 json을 바꾸면 array object도 저장할수있음
+        localStorage.setItem("array", newarr);
+        //json타입을 array로 바꿈
+        var jsondata = JSON.parse(localStorage.getItem("array"));
+        console.log(jsondata);
+
+        //localstorage말고 sessionstorage 브라우저 끄면 날라감
+
+        //localstorage 수정할려면 자료꺼낸다음 꺼낸거 수정하고 다시 넣음
+
+        var getData = localStorage.getItem("array");
+        var getDataParseObject = JSON.parse(getData);
+        getDataParseObject[3] = 133;
+        localStorage.setItem("array", JSON.stringify(getDataParseObject));
+        console.log(getDataParseObject);
       }
 
       //또는 a뒤에 i를 넣고 해도 됨
@@ -65,6 +110,51 @@
     </script>
 
     <script>
+      $(".buy").on("click", function () {
+        //만약헤 items에 localstorage에 데이터가 있으면 갖고와서 추가하는거고
+        //없으면 그냥 해당 것을 추가하는거
+        //Json stringfy가 array를 json으로
+        //json parse가 json을 array로
+
+        if (JSON.parse(localStorage.getItem("items")).length == 0) {
+          console.log("0개임");
+        } else {
+          console.log(JSON.parse(localStorage.getItem("items")).length);
+
+          var cart = JSON.parse(localStorage.getItem("items"));
+
+          JSON.stringify(cart);
+
+          cart.push($(this).data("title"));
+
+          console.log(cart);
+
+          var json = JSON.stringify(cart);
+
+          localStorage.setItem("items", json);
+        }
+
+        // var name = $(this).data("title");
+
+        // console.log(name);
+
+        // var nowarray = [name];
+
+        // var jsontype = JSON.stringify(nowarray);
+
+        // console.log(jsontype);
+
+        // var namearray = localStorage.setItem("items", jsontype);
+
+        // console.log(namearray);
+
+        // console.log(cart);
+
+        // console.log(name);
+      });
+    </script>
+
+    <script>
       //Get하는 방법
       // .get은 Json -> Object로 자동 변환 해줌
       $.get("https://codingapple1.github.io/price.json")
@@ -77,7 +167,7 @@
         });
 
       var 클릭횟수 = 0;
-      $(".btn").on("click", function () {
+      $(".more").on("click", function () {
         클릭횟수++;
         console.log(클릭횟수);
         if (클릭횟수 == 1) {
@@ -99,7 +189,21 @@
               console.log("실패함");
             });
 
-          $(".btn").addClass("hidden");
+          $(".more  ").addClass("hidden");
+        }
+      });
+    </script>
+
+    <script>
+      $(".price-value").on("keydown", function (event) {
+        if (event.keyCode == 13) {
+          console.log($(".row > div"));
+          $(".row").html("");
+          products.forEach(function (test, b) {
+            if (test.price <= $(".price-value").val()) {
+              foreachtest([test]);
+            }
+          });
         }
       });
     </script>
